@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
+}
+#home {
+  background-image: url("/cafe.jpg");
+
+  z-index: -2;
+}
+
+#home::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.57);
+}
+
+.font-color-brown-1 {
+  color: #b99d75;
+}
+.font-color-white-1 {
+  color: #fff;
+}

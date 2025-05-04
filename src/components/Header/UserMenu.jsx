@@ -1,13 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
 const UserMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  const menuRef = useRef(null);
+
+  // 클릭 외부 감지
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuButtonRef.current &&
+        !menuButtonRef.current.contains(event.target) &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setMenuOpen(false); // 메뉴를 닫음
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <>
       <button
         type="button"
         className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
+        ref={menuButtonRef} 
       >
         <span className="absolute -inset-1.5"></span>
         <span className="sr-only">View notifications</span>
@@ -35,6 +55,7 @@ const UserMenu = () => {
             id="user-menu-button"
             aria-expanded={menuOpen}
             aria-haspopup="true"
+            ref={menuButtonRef} 
           >
             <span className="absolute -inset-1.5"></span>
             <span className="sr-only">Open user menu</span>
@@ -52,14 +73,27 @@ const UserMenu = () => {
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="user-menu-button"
+            ref={menuRef}
           >
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem">
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+            >
               Your Profile
             </a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem">
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+            >
               Settings
             </a>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem">
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+            >
               Sign out
             </a>
           </div>
