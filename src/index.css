@@ -15,25 +15,25 @@ body {
 
 
 
-/* 기본 애니메이션 효과 */
-.toast-enter {
+/* index.css 또는 다른 스타일 파일에 추가 */
+.page-enter {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(20px);
 }
 
-.toast-enter-active {
+.page-enter-active {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.toast-exit {
+.page-exit {
   opacity: 1;
   transform: translateY(0);
 }
 
-.toast-exit-active {
+.page-exit-active {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(-20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
