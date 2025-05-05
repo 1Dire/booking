@@ -1,5 +1,5 @@
 import React from "react";
-
+import { FaArrowRight } from "react-icons/fa";
 const Home = () => {
   return (
     <>
@@ -7,7 +7,8 @@ const Home = () => {
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-55"></div>
         <div className="relative px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56 z-10">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
-            고요한 자연 속에서의 완벽한 쉼터 <br />한산펜션
+            고요한 자연 속에서의 완벽한 쉼터 <br />
+            한산펜션
           </h1>
           <p className="mb-8 text-lg font-normal text-yellow-600 lg:text-xl sm:px-16 lg:px-48">
             한산도의 고요한 자연 속, 편안한 휴식을 위한 펜션 에 오신 걸
@@ -19,21 +20,7 @@ const Home = () => {
               className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-yellow-800 hover:bg-yellow-700 focus:ring-4 focus:ring-yellow-800"
             >
               예약안내
-              <svg
-                className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
+              <FaArrowRight className="w-3.5 h-3.5 ms-2 rtl:rotate-180" />
             </a>
             <a
               href="#"

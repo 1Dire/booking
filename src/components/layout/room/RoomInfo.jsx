@@ -1,17 +1,16 @@
 import React from "react";
 
-const RoomInfo = ({data}) => {
+const RoomInfo = ({ data }) => {
   return (
-    <>
-      <div>
-        <span className="font-medium text-gray-500">{data.size} 평</span>
+    <div className="mb-3 space-y-1">
+      <div className="text-sm text-gray-500">
+        <span className="font-medium">{data.size}평</span>{" "}
+        <span className="text-xs text-gray-400">({data.capacity}명)</span>
       </div>
-      <div>
-        <span className="mt-2 text-3xl font-semibold text-gray-950">
-          {data.name}
-        </span>
+      <div className="text-2xl font-bold text-gray-900 tracking-tight">
+        {data.name}
       </div>
-    </>
+    </div>
   );
 };
 

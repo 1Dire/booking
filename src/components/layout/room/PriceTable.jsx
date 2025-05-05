@@ -1,24 +1,10 @@
 import React from "react";
-
+import { HiOutlineCash } from "react-icons/hi";
 const PriceTable = ({ price }) => {
   return (
     <>
       <span className="flex items-center gap-1 text-yellow-600">
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeWidth="2"
-            d="M8 7V6a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1M3 18v-7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
-          />
-        </svg>
+        <HiOutlineCash  className="w-6 h-6"/>
         <span className="text-sm/6 font-medium">가격</span>
       </span>
       <div className="grid grid-cols-4 text-sm text-gray-700 font-semibold mt-2">

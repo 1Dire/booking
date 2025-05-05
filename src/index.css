@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
 
 body {
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
@@ -13,9 +15,25 @@ body {
 
 
 
-.font-color-brown-1 {
-  color: #b99d75;
+/* 기본 애니메이션 효과 */
+.toast-enter {
+  opacity: 0;
+  transform: translateY(-20px);
 }
-.font-color-white-1 {
-  color: #fff;
+
+.toast-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.toast-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-exit-active {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
