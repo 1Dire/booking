@@ -22,9 +22,9 @@ const RoomList = ({ data }) => {
         <div className="mt-5">
           <button
             type="button"
-            className="w-full flex items-center justify-center gap-2 rounded-lg bg-yellow-700 px-3 py-2 text-sm font-bold text-white"
+            className="w-full flex items-center justify-center gap-2 rounded-lg bg-yellow-700 px-3 py-2 text-sm font-bold text-white cursor-pointer hover:bg-yellow-800 transition"
           >
-            <span>예약</span>
+            <span>이방 예약하기</span>
 
             <FaArrowRight className="w-4 h-4" />
           </button>
