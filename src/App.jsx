@@ -11,7 +11,7 @@ import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <>
-      <Header />
+      <Header basename="/"/>
       <main className="flex-grow ">
         <Routes>
           <Route path="/" element={<Home />} />
