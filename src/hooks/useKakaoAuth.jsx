@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 
 const useKakaoAuth = (onSuccess, onFailure) => {
@@ -28,7 +27,7 @@ const useKakaoAuth = (onSuccess, onFailure) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            localStorage.setItem("jwtToken", data.token);
+            sessionStorage.setItem("jwtToken", data.accessToken);
             onSuccess(accessToken);
           })
           .catch(onFailure);

@@ -1,9 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 const UserMenu = ({ onLogout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef(null);
   const menuRef = useRef(null);
+
+
+  const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -19,69 +22,66 @@ const UserMenu = ({ onLogout }) => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []); 
+
+  const toggleMenu = useCallback(() => {
+    setMenuOpen((prevState) => !prevState);
   }, []);
 
   return (
     <>
-      <button
-        type="button"
-        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-        ref={menuButtonRef}
-      >
-        <span className="sr-only">View notifications</span>
-        <svg
-          className="size-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-          />
-        </svg>
-      </button>
-
       <div className="relative ml-3">
         <div>
           <button
             type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none"
+            onClick={toggleMenu}
+            className="relative flex items-center rounded-full bg-gray-800 text-sm focus:outline-none cursor-pointer"
             id="user-menu-button"
             aria-expanded={menuOpen}
             aria-haspopup="true"
             ref={menuButtonRef}
           >
-            <img
-              className="size-8 rounded-full"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?...q=80"
-              alt=""
-            />
+            {userProfile?.properties?.profile_image && (
+              <img
+                className="rounded-full border-2 border-white"
+                src={userProfile.properties.profile_image}
+                alt="Profile"
+                width={40}
+                height={40}
+              />
+            )}
           </button>
         </div>
 
         {menuOpen && (
           <div
-            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5"
+            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-lg bg-white py-3 shadow-lg ring-1 ring-black/5"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="user-menu-button"
             ref={menuRef}
           >
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem">
-              Settings
-            </a>
+            {userProfile && (
+              <div className="px-4 py-2 text-sm text-gray-800 flex items-center">
+                <span className="mr-2 text-sm text-gray-900 font-semibold">
+                  {userProfile.properties.nickname}
+                </span>
+                <span className="text-xs text-gray-500">님 안녕하세요!</span>
+              </div>
+            )}
+
             <button
-              onClick={() => {
-                onLogout();
-              }}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700"
+              className="block w-full text-left px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-100"
               role="menuitem"
             >
-              Sign out
+              내 정보
+            </button>
+            <button
+              onClick={onLogout}
+              className="block w-full text-left px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+            >
+              로그아웃
             </button>
           </div>
         )}
