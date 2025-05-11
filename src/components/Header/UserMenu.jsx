@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const UserMenu = () => {
+const UserMenu = ({ onLogout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef(null);
   const menuRef = useRef(null);
 
-  // 클릭 외부 감지
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -14,7 +13,7 @@ const UserMenu = () => {
         menuRef.current &&
         !menuRef.current.contains(event.target)
       ) {
-        setMenuOpen(false); // 메뉴를 닫음
+        setMenuOpen(false);
       }
     };
 
@@ -26,10 +25,9 @@ const UserMenu = () => {
     <>
       <button
         type="button"
-        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
-        ref={menuButtonRef} 
+        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+        ref={menuButtonRef}
       >
-        <span className="absolute -inset-1.5"></span>
         <span className="sr-only">View notifications</span>
         <svg
           className="size-6"
@@ -51,14 +49,12 @@ const UserMenu = () => {
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
+            className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none"
             id="user-menu-button"
             aria-expanded={menuOpen}
             aria-haspopup="true"
-            ref={menuButtonRef} 
+            ref={menuButtonRef}
           >
-            <span className="absolute -inset-1.5"></span>
-            <span className="sr-only">Open user menu</span>
             <img
               className="size-8 rounded-full"
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?...q=80"
@@ -69,33 +65,24 @@ const UserMenu = () => {
 
         {menuOpen && (
           <div
-            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none"
+            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="user-menu-button"
             ref={menuRef}
           >
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700"
-              role="menuitem"
-            >
-              Your Profile
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700"
-              role="menuitem"
-            >
+            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem">
               Settings
             </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700"
+            <button
+              onClick={() => {
+                onLogout();
+              }}
+              className="block w-full text-left px-4 py-2 text-sm text-gray-700"
               role="menuitem"
             >
               Sign out
-            </a>
+            </button>
           </div>
         )}
       </div>
