@@ -1,0 +1,60 @@
+.fc-col-header-cell-cushion {
+  text-decoration: none !important;
+}
+.fc-day a {
+  text-decoration: none !important;
+}
+.fc-scrollgrid-sync-inner a {
+  color: black;
+}
+
+.fc-day-sun .fc-scrollgrid-sync-inner a {
+  color: red;
+}
+.fc-day-sat .fc-scrollgrid-sync-inner a {
+  color: blue;
+}
+
+.fc-event-title-container {
+  background-color: none !important;
+}
+
+.fc-event {
+  background-color: transparent;
+  color: black;
+  border: none;
+}
+.fc-event .fc-event-title {
+  color: initial;
+}
+.fc-event.reserved-room {
+  background-color: #ff4d4f;
+}
+.fc-event.reserved-room .fc-event-title {
+  color: #fff;
+}
+
+.peak-season .fc-daygrid-day-top {
+  background-color: #ffb3b3 !important;
+}
+
+.semi-peak .fc-daygrid-day-top {
+  background-color: #fff3b0 !important;
+}
+
+.off-season .fc-daygrid-day-top {
+  background-color: #b3e5fc !important;
+}
+
+
+.available-room{
+    cursor: pointer !important;
+} 
+
+
+
+/* 공휴일 날짜를 빨간색으로 표시 */
+.fc-daygrid-day.public-holiday .fc-daygrid-day-number {
+  color: red !important;
+  font-weight: bold;
+}

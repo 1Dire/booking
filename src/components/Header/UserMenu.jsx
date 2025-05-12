@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate 훅을 임포트
 
 const UserMenu = ({ onLogout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef(null);
   const menuRef = useRef(null);
-
+  const navigate = useNavigate(); // navigate 훅 사용
 
   const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
@@ -27,6 +28,13 @@ const UserMenu = ({ onLogout }) => {
   const toggleMenu = useCallback(() => {
     setMenuOpen((prevState) => !prevState);
   }, []);
+
+  const handleLogout = () => {
+    // 로그아웃 처리
+    sessionStorage.removeItem("userProfile"); // 세션 스토리지에서 사용자 정보 제거
+    onLogout(); // 부모 컴포넌트의 onLogout 함수 호출 (필요하다면)
+    navigate("/"); // 로그아웃 후 /home으로 리다이렉트
+  };
 
   return (
     <>
@@ -77,7 +85,7 @@ const UserMenu = ({ onLogout }) => {
               내 정보
             </button>
             <button
-              onClick={onLogout}
+              onClick={handleLogout} // 로그아웃 시 handleLogout 함수 호출
               className="block w-full text-left px-4 py-2 text-sm cursor-pointer text-gray-700 hover:bg-gray-100"
               role="menuitem"
             >

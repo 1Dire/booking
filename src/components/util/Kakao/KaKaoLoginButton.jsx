@@ -3,7 +3,6 @@ import kakaoLoginSmall from "@/assets/kakao_login_small.png";
 import useKakaoAuth from "@/hooks/useKakaoAuth";
 
 const KaKaoLoginButton = ({ onLoginStatusChange }) => {
-
   const onSuccess = (accessToken) => {
     fetch("https://kapi.kakao.com/v2/user/me", {
       headers: { Authorization: `Bearer ${accessToken}` },
@@ -13,6 +12,9 @@ const KaKaoLoginButton = ({ onLoginStatusChange }) => {
         // 사용자 정보를 세션 스토리지에 저장
         sessionStorage.setItem("userProfile", JSON.stringify(data)); 
         onLoginStatusChange(true);
+        
+        // 로그인 후 '/'로 리다이렉트
+        window.location.href = "/";
       })
       .catch((err) => {
         console.error("사용자 정보 실패:", err);
