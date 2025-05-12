@@ -1,95 +1,107 @@
 import React, { useEffect, useRef, useState } from "react";
 import TuiGrid from "tui-grid";
 import "tui-grid/dist/tui-grid.css";
-import { Button, Modal, ModalBody, ModalHeader } from "flowbite-react";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
 import ConfirmModal from "@/components/layout/modal/ConfirmModal";
+import { deleteSeason, getAllSeason } from "@/api/seasons";
+import { toast } from "react-toastify";
+
 const Grid = () => {
   const gridRef = useRef(null);
   const gridInstance = useRef(null);
-
+  const [data, setData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [pendingDeleteId, setPendingDeleteId] = useState(null);
+  const [pendingDeleteData, setPendingDeleteData] = useState(null);
 
-  // ⚔️ Tailwind + Flowbite 스타일의 삭제 버튼 렌더러
+  // 그리드 초기화 및 설정
+  useEffect(() => {
+    if (!gridRef.current || gridInstance.current) return;
+
+    gridInstance.current = new TuiGrid({
+      el: gridRef.current,
+      data,
+      columns: [
+        { header: "종류", name: "name", align: "center" },
+        { header: "시작", name: "startDate", align: "center" },
+        { header: "종료", name: "endDate", align: "center" },
+        {
+          header: "삭제",
+          name: "delete",
+          align: "center",
+          renderer: {
+            type: DeleteButtonRenderer,
+          },
+        },
+      ],
+      bodyHeight: 200,
+    });
+
+    return () => {
+      gridInstance.current?.destroy();
+      gridInstance.current = null;
+    };
+  }, [data]);
+
+  // 데이터 로딩 함수
+  const loadData = async () => {
+    try {
+      const seasonData = await getAllSeason();
+      setData(seasonData);
+    } catch (error) {
+      toast.error("데이터 로드 실패!");
+    }
+  };
+
+  // 삭제 버튼 렌더러 클래스
   class DeleteButtonRenderer {
     constructor(props) {
       const el = document.createElement("button");
       el.textContent = "삭제";
       el.className =
-        "bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-1 rounded shadow ";
-      el.setAttribute("data-id", props.rowKey);
-
+        "bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-1 rounded shadow";
       el.addEventListener("click", (ev) => {
         ev.stopPropagation();
-        const id = Number(ev.target.getAttribute("data-id"));
-        setPendingDeleteId(id);
+        const rowData = props.grid.getData()[props.rowKey];
+        setPendingDeleteData(rowData);
         setIsModalOpen(true);
       });
-
       this.el = el;
     }
 
     getElement() {
       return this.el;
     }
-
-    render() {}
   }
 
+  // 컴포넌트가 처음 렌더링될 때 데이터 로드
   useEffect(() => {
-    if (gridRef.current && !gridInstance.current) {
-      gridInstance.current = new TuiGrid({
-        el: gridRef.current,
-        data: [
-          { id: 1, name: "성수기", start: "2025-05-02", end: "2025-05-02" },
-          { id: 2, name: "성수기", start: "2025-05-03", end: "2025-05-04" },
-          { id: 3, name: "준성수기", start: "2025-06-01", end: "2025-06-02" },
-        ],
-        columns: [
-          { header: "종류", name: "name", align: "center" },
-          { header: "시작", name: "start", align: "center" },
-          { header: "종료", name: "end", align: "center" },
-          {
-            header: "삭제",
-            name: "delete",
-            align: "center",
-            renderer: {
-              type: DeleteButtonRenderer,
-            },
-          },
-        ],
-        bodyHeight: 200,
-      });
-    }
-
-    return () => {
-      if (gridInstance.current) {
-        gridInstance.current.destroy();
-      }
-    };
+    loadData();
   }, []);
 
-  const handleConfirmDelete = () => {
-    const grid = gridInstance.current;
-    const rowIndex = grid.getIndexOfRow(pendingDeleteId);
-    if (rowIndex !== -1) {
-      grid.removeRow(rowIndex);
+  // 삭제 확정 시 데이터 삭제 요청
+  const handleConfirmDelete = async () => {
+    if (pendingDeleteData) {
+      try {
+        await deleteSeason(pendingDeleteData.id);
+        await loadData();  // 삭제 후 새로운 데이터 로드
+        toast.success("삭제가 완료되었습니다!");
+      } catch (error) {
+        toast.error("삭제 실패!");
+      }
     }
+
     setIsModalOpen(false);
-    setPendingDeleteId(null);
+    setPendingDeleteData(null);
   };
 
   return (
     <>
-      <div ref={gridRef} style={{ height: "500px" }} />
+      <div ref={gridRef} style={{ height: "auto" }} />
 
-      {/* Flowbite 모달 */}
       {isModalOpen && (
         <ConfirmModal
-          title="정말로 이 항목을 삭제하시겠습니까?" // 동적으로 제목 설정
-          onConfirm={handleConfirmDelete} // 삭제 함수
-          onClose={() => setIsModalOpen(false)} // 모달 닫기 함수
+          title="정말로 이 항목을 삭제하시겠습니까?"
+          onConfirm={handleConfirmDelete}
+          onClose={() => setIsModalOpen(false)}
         />
       )}
     </>
