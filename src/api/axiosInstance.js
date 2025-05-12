@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
       sessionStorage.removeItem("jwtToken");
       
       // 홈으로 이동하고 페이지 새로고침
-      window.location.href = "/home";  // 자동으로 새로고침됨
+      window.location.href = "/";  // 자동으로 새로고침됨
     }
 
     console.error("API 요청 실패:", err);

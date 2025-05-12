@@ -10,6 +10,7 @@ import Booking from "./pages/Booking";
 import { ToastContainer } from "react-toastify"; // ToastContainer 임포트
 import "react-toastify/dist/ReactToastify.css"; // 스타일 임포트
 import Footer from "./components/Footer/Footer";
+import Test from "./pages/Test";
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/directions" element={<Directions />} />
           <Route path="/attractions" element={<Attractions />} />
           <Route path="/book/booking" element={<Booking />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </main>
 

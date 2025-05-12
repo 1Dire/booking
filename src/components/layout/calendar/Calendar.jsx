@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -7,8 +9,10 @@ import { getAllRooms } from "@/api/room";
 import { getAllBook } from "@/api/books/index";
 import { getRoleFromToken } from "@/utils/authUtils";
 import { getPublicHolidays } from "@/utils/getPublicHolidays";
+import SettingsModal from "@/components/layout/modal/SettingModal";
 
 function Calendar() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [roomList, setRoomList] = useState([]);
   const [bookList, setBookList] = useState([]);
   const [year, setYear] = useState(new Date().getFullYear());
@@ -18,7 +22,7 @@ function Calendar() {
 
   const calendarRef = useRef(null);
   const [title, setTitle] = useState("");
-  //관리자 확인
+
   useEffect(() => {
     const token = sessionStorage.getItem("jwtToken");
     if (token) {
@@ -153,9 +157,15 @@ function Calendar() {
           <span className="calendar-title">{title}</span>
         </h2>
         <div className="toolbar flex gap-3">
-          <button className="btn-settings p-3 bg-gray-200 hover:bg-gray-300 rounded-full text-gray-600 hover:text-gray-800">
-            <BsGearFill className="text-xl" />
-          </button>
+          {isAdmin && (
+            <button
+              className="btn-settings p-3 bg-gray-200 hover:bg-gray-300 rounded-full text-gray-600 hover:text-gray-800"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <BsGearFill className="text-xl" />
+            </button>
+          )}
+
           <div className="flex items-center gap-2">
             <button
               className="btn-prev p-3 rounded-full text-yellow-300 bg-yellow-700 hover:bg-yellow-800"
@@ -213,6 +223,15 @@ function Calendar() {
           return classes;
         }}
       />
+      {isModalOpen && (
+        <SettingsModal
+          onClose={() => setIsModalOpen(false)} // 모달 닫기
+          onSave={(dates) => {
+            console.log("Saved dates: ", dates); // 날짜 저장
+            setIsModalOpen(false); // 저장 후 모달 닫기
+          }}
+        />
+      )}
     </>
   );
 }
