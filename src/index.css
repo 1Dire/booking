@@ -37,3 +37,7 @@ body {
   transform: translateY(-20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+.react-datepicker-popper {
+  z-index: 50 !important; /* modal이나 드롭다운 위에 올릴 경우 */
+}

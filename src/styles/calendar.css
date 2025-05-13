@@ -9,10 +9,10 @@
 }
 
 .fc-day-sun .fc-scrollgrid-sync-inner a {
-  color: red;
+  color: #f05152 !important;
 }
 .fc-day-sat .fc-scrollgrid-sync-inner a {
-  color: blue;
+  color: #4169E1;
 }
 
 .fc-event-title-container {
@@ -28,33 +28,43 @@
   color: initial;
 }
 .fc-event.reserved-room {
-  background-color: #ff4d4f;
+  background-color: #8e4a10;
 }
 .fc-event.reserved-room .fc-event-title {
   color: #fff;
 }
 
-.peak-season .fc-daygrid-day-top {
-  background-color: #ffb3b3 !important;
-}
-
-.semi-peak .fc-daygrid-day-top {
-  background-color: #fff3b0 !important;
-}
-
-.off-season .fc-daygrid-day-top {
-  background-color: #b3e5fc !important;
+.fc-daygrid-day-number {
+  width: 100%;
 }
 
 
-.available-room{
-    cursor: pointer !important;
+.public-holiday-bg .fc-daygrid-day-top {
+  background-color: #ffcccb !important; /* 붉은 색 */
+}
+
+/* 성수기 배경 색 (코랄 색) */
+.peak-season-bg .fc-daygrid-day-top {
+  background-color: #ffb6c1 !important; /* 코랄 색 */
+}
+
+/* 준성수기 배경 색 (금색) */
+.semi-peak-bg .fc-daygrid-day-top {
+  background-color: #fffacd !important; /* 금색 */
+}
+
+/* 비수기 배경 색 (파스텔 블루) */
+.off-season-bg .fc-daygrid-day-top {
+  background-color: #b0e0e6 !important; /* 하늘색 */
+}
+
+.hidden-date.fc-daygrid-day.fc-day-past:not(.fc-day-today) .fc-daygrid-day-events {
+  /* display: none; */
 } 
+.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
+  min-height: 125px;
+}
 
-
-
-/* 공휴일 날짜를 빨간색으로 표시 */
-.fc-daygrid-day.public-holiday .fc-daygrid-day-number {
-  color: red !important;
-  font-weight: bold;
+.next-month .fc-daygrid-day-events{
+display: none;
 }
