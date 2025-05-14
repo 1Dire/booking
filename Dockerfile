@@ -1,29 +1,25 @@
-# 1. 베이스 이미지로 Node 사용
-FROM node:18-alpine AS build
+# 1. Node.js 이미지 사용
+FROM node:16 AS build
 
 # 2. 작업 디렉토리 설정
 WORKDIR /app
 
-# 3. 의존성 파일 복사
-COPY package.json package-lock.json ./
-
-# 4. 의존성 설치
+# 3. 의존성 설치
+COPY package*.json ./
 RUN npm install
 
-# 5. 소스 코드 복사
-COPY . .
-
-# 6. Vite 앱 빌드
+# 4. React 앱 빌드
+COPY . ./
 RUN npm run build
 
-# 7. Nginx를 이용해 빌드된 앱을 서빙
+# 5. Nginx를 위한 설정
 FROM nginx:alpine
 
-# 8. 빌드된 결과물을 Nginx 서버에 복사
+# 6. 빌드된 파일을 Nginx 서버로 복사
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# 9. 5173 포트 열기
-EXPOSE 5173
+# 7. Nginx 설정 파일을 덮어쓰기
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# 10. Nginx 서버 실행
-CMD ["nginx", "-g", "daemon off;"]
+# 8. Nginx 포트 노출
+EXPOSE 80

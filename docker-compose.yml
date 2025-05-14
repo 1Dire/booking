@@ -3,7 +3,8 @@ services:
   app:
     build: .
     ports:
-      - "5173:80"
+      - "5173:80"  # 외부 포트 5173에 Nginx가 80번 포트로 연결되도록 설정
     volumes:
       - ./src:/app/src
       - /app/node_modules
+      - ./nginx.conf:/etc/nginx/nginx.conf  # nginx.conf를 컨테이너에 복사
