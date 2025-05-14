@@ -10,7 +10,7 @@ import DateRangePicker from "@/components/util/datePicker/DateRangePicker";
 import { SelectInput } from "@/components/util/input/SelectInput";
 import { getAllSeasonType, createSeason } from "@/api/seasons";
 import { FaPlus } from "react-icons/fa";
-import Grid from "@/components/util/grid/grid";
+import Grid from "@/components/util/grid/Grid";
 import ConfirmModal from "@/components/layout/modal/ConfirmModal";
 import { toast } from "react-toastify";
 
