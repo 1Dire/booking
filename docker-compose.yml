@@ -3,7 +3,7 @@ services:
   app:
     build: .
     ports:
-      - "5173:3000"  # 외부 포트 5173에 Node.js 서버가 3000번 포트로 연결되도록 설정
+      - "5173:80" 
     volumes:
       - ./src:/app/src
       - /app/node_modules
