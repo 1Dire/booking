@@ -1,25 +1,29 @@
-# Step 1: 빌드 단계
-FROM node:18 AS build
+# 1. 베이스 이미지로 Node 사용
+FROM node:18-alpine AS build
 
-# 작업 디렉토리 설정
+# 2. 작업 디렉토리 설정
 WORKDIR /app
 
-# 의존성 설치
+# 3. 의존성 파일 복사
 COPY package.json package-lock.json ./
+
+# 4. 의존성 설치
 RUN npm install
 
-# Vite 프로젝트 빌드
-COPY . ./
+# 5. 소스 코드 복사
+COPY . .
+
+# 6. Vite 앱 빌드
 RUN npm run build
 
-# Step 2: 프로덕션 단계
+# 7. Nginx를 이용해 빌드된 앱을 서빙
 FROM nginx:alpine
 
-# 빌드된 파일을 Nginx의 기본 디렉토리로 복사
+# 8. 빌드된 결과물을 Nginx 서버에 복사
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# 80 포트로 앱을 서빙
-EXPOSE 80
+# 9. 5173 포트 열기
+EXPOSE 5173
 
-# Nginx 실행
+# 10. Nginx 서버 실행
 CMD ["nginx", "-g", "daemon off;"]
