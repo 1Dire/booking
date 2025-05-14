@@ -85,7 +85,7 @@ const BookingModal = ({ onClose, data }) => {
   };
   const isWeekend = (date) => {
     const day = date.getDay();
-    const holiday = isHoliday(date); 
+    const holiday = isHoliday(date);
 
     // 공휴일 하루 다음날에만 주말 요금을 적용
     const nextDay = new Date(date);
@@ -179,13 +179,21 @@ const BookingModal = ({ onClose, data }) => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // 폼 기본 동작 막기
 
+    if (!name.trim()) {
+      toast.error("이름을 입력해주세요.");
+      return;
+    }
+
+    if (!phone.trim()) {
+      toast.error("전화번호를 입력해주세요.");
+      return;
+    }
+
     try {
-      // 💰 총 금액 계산
       const totalPrice = calculateTotalPrice();
       const charcoalFeeApplied = isCharcoalIncluded ? charcoalFee : 0;
       const extraPersonFee = numberOfPeople * additionalPersonFee;
 
-      // 📦 예약 데이터 구성
       const formData = {
         roomId: id,
         roomName,
@@ -204,10 +212,7 @@ const BookingModal = ({ onClose, data }) => {
         totalPrice,
       };
 
-      // 🚀 예약 요청 (비동기)
       await createBook(formData);
-
-      // ✅ 성공 메시지
       toast.success("예약이 완료되었습니다!");
     } catch (error) {
       console.error("예약 실패:", error);
