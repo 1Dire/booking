@@ -1,11 +1,14 @@
-# 1. Nginx 공식 이미지 사용
+# 1단계: 빌드 단계
+FROM node:18-alpine AS build
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+# 2단계: Nginx으로 서빙
 FROM nginx:alpine
-
-# 2. 빌드된 프로젝트 파일을 컨테이너의 /usr/share/nginx/html에 복사
-COPY ./dist /usr/share/nginx/html
-
-# 3. Nginx가 사용하는 80 포트를 5173 포트로 노출
-EXPOSE 5173
-
-# 4. Nginx 서버 실행
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
