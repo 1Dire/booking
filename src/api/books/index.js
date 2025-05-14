@@ -23,11 +23,17 @@ export const deleteBook = async (bookId) => {
   return res.data;
 };
 
-
-
 export const updateBook = async (bookId, data) => {
   const res = await axios.put(`/books/${bookId}`, data); 
   return res.data;
 };
 
-
+export const getMyBooks = async () => {
+  const token = sessionStorage.getItem("jwtToken"); // 저장된 JWT 토큰
+  const res = await axios.get("/books/my-bookings", {
+    headers: {
+      Authorization: `Bearer ${token}`, // 여기에 토큰을 실어 보냄
+    },
+  });
+  return res.data;
+};

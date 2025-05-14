@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { HiBars3, HiXMark } from 'react-icons/hi2'; // Heroicons from react-icons
 
 const MobileMenuButton = ({ menuOpen, setMenuOpen }) => (
   <button
@@ -11,13 +13,9 @@ const MobileMenuButton = ({ menuOpen, setMenuOpen }) => (
     <span className="absolute -inset-0.5"></span>
     <span className="sr-only">Open main menu</span>
     {menuOpen ? (
-      <svg className="block size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-      </svg>
+      <HiXMark className="block size-6" />
     ) : (
-      <svg className="block size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-      </svg>
+      <HiBars3 className="block size-6" />
     )}
   </button>
 );

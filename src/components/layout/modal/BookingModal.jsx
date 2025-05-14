@@ -63,7 +63,7 @@ const BookingModal = ({ onClose, data }) => {
     }
   }, [startDate]);
   const isHoliday = (date) => {
-    const formatted = Number(format(date, "yyyyMMdd")); // ← 정확한 날짜 포맷
+    const formatted = Number(format(date, "yyyyMMdd"));
     return holidays.some((h) => h.locdate === formatted);
   };
   const isPeakSeason = (date) => {
@@ -85,7 +85,7 @@ const BookingModal = ({ onClose, data }) => {
   };
   const isWeekend = (date) => {
     const day = date.getDay();
-    const holiday = isHoliday(date); // 해당 날짜가 공휴일인지 체크
+    const holiday = isHoliday(date); 
 
     // 공휴일 하루 다음날에만 주말 요금을 적용
     const nextDay = new Date(date);

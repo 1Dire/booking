@@ -15,7 +15,7 @@ import {
   MdDriveFileRenameOutline,
   MdOutlinePhoneIphone,
 } from "react-icons/md";
-
+import { getRoleFromToken } from "@/utils/authUtils";
 import { CiMemoPad } from "react-icons/ci";
 import { GiCampfire } from "react-icons/gi";
 import "react-datepicker/dist/react-datepicker.css";
@@ -28,6 +28,12 @@ const BookingModal = ({ onClose, id }) => {
   const [bookInfo, setBookInfo] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("jwtToken");
+    if (token) setIsAdmin(getRoleFromToken(token));
+  }, []);
 
   const [options] = useState([
     {
@@ -187,51 +193,66 @@ const BookingModal = ({ onClose, id }) => {
               </div>
             </div>
           </ModalBody>
-          <ModalFooter className="flex justify-between gap-3">
-            <div className="flex gap-3">
-              <Button
-                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-                onClick={() => {
-                  setIsModalOpen(true);
-                }}
-              >
-                삭제
-              </Button>
-              <Select
-                id="status"
-                name="status"
-                value={selectedStatus}
-                onChange={handleStatusChange}
-                className="w-30"
-              >
-                {options.map((option) => (
-                  <option key={option.id} value={option.value}>
-                    {option.name}
-                  </option>
-                ))}
-              </Select>
-            </div>
+          {isAdmin ? (
+            <>
+              <ModalFooter className="flex justify-between gap-3">
+                <div className="flex gap-3">
+                  <Button
+                    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    삭제
+                  </Button>
+                  <Select
+                    id="status"
+                    name="status"
+                    value={selectedStatus}
+                    onChange={handleStatusChange}
+                    className="w-30"
+                  >
+                    {options.map((option) => (
+                      <option key={option.id} value={option.value}>
+                        {option.name}
+                      </option>
+                    ))}
+                  </Select>
+                </div>
+                <div className="flex justify-end gap-3">
+                  <Button
+                    className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                    onClick={onClose}
+                  >
+                    닫기
+                  </Button>
 
-            <div className="flex justify-end gap-3">
-              <Button
-                className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
-                onClick={onClose}
-              >
-                닫기
-              </Button>
-              <Button
-                className="px-4 py-2 bg-yellow-700 text-yellow-300 rounded hover:bg-yellow-800"
-                onClick={() => {
-                  handleUpdateBook();
-                }}
-              >
-                저장
-              </Button>
-            </div>
-          </ModalFooter>
+                  <Button
+                    className="px-4 py-2 bg-yellow-700 text-yellow-300 rounded hover:bg-yellow-800"
+                    onClick={() => {
+                      handleUpdateBook();
+                    }}
+                  >
+                    저장
+                  </Button>
+                </div>
+              </ModalFooter>
+            </>
+          ) : (
+            <>
+              <ModalFooter className="flex justify-end gap-3">
+                <Button
+                  className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                  onClick={onClose}
+                >
+                  닫기
+                </Button>
+              </ModalFooter>
+            </>
+          )}
         </Modal>
       )}
-      {isModalOpen && (
+      {isModalOpen && isAdmin && (
         <ConfirmModal
           title="예약을 삭제하시겠습니까?"
           onConfirm={handleDeleteBook}

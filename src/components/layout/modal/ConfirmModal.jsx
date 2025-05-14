@@ -9,7 +9,7 @@ const ConfirmModal = ({ onConfirm, onClose, title }) => {
     onConfirm();
     setOpenModal(false); // 모달 닫기
   };
-onConfirm
+  onConfirm;
   return (
     <Modal
       show={openModal}
@@ -25,12 +25,17 @@ onConfirm
             {title}
           </h3>
           <div className="flex justify-center gap-4">
-            {/* "Yes" 버튼은 빨간색으로 설정 */}
-            <Button className="px-4 py-2 bg-yellow-700 text-yellow-300 rounded hover:bg-yellow-800" onClick={handleConfirm}>
+            <Button
+              className="px-4 py-2 bg-yellow-700 text-yellow-300 rounded hover:bg-yellow-800"
+              onClick={handleConfirm}
+            >
               Yes
             </Button>
-            {/* "No" 버튼은 기본 회색으로 설정 */}
-            <Button className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" onClick={() => setOpenModal(false)}>
+
+            <Button
+              className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+              onClick={() => setOpenModal(false)}
+            >
               No
             </Button>
           </div>

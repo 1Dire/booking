@@ -81,7 +81,7 @@ const Header = () => {
       </div>
 
       {/* 모바일 메뉴 표시 */}
-      {menuOpen && <MobileMenu menu={menuData} />}
+      {menuOpen && <MobileMenu menu={menuData} setMenuOpen={setMenuOpen} />}
     </nav>
   );
 };
