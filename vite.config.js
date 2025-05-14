@@ -2,13 +2,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import flowbiteReact from "flowbite-react/plugin/vite"
+import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), flowbiteReact()],
   resolve: {
     alias: {
-      '@': '/src',  // '@'를 src 폴더로 설정
+      '@': path.resolve(__dirname, 'src'),  // '@'를 src 폴더로 설정
+      crypto: 'crypto-browserify', // crypto 모듈을 브라우저 폴리필로 설정
     }
   },
   server: {
