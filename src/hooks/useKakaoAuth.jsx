@@ -36,7 +36,7 @@ const useKakaoAuth = (onSuccess, onFailure) => {
         });
 
         // 서버로 전달
-        fetch("http://localhost:8080/auth/kakao", {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/kakao`, {  // 환경변수 사용
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ accessToken }),
