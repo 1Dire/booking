@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-yellow-800 text-gray-200 py-10 px-4">
+    <footer className="bg-blue-800 text-gray-200 py-10 px-4">
       <div className="max-w-7xl mx-auto flex flex-col gap-8">
         {/* 로고 */}
         <div className="flex justify-start">

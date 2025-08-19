@@ -43,7 +43,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-yellow-800 z-50">
+    <nav className="fixed top-0 left-0 w-full bg-blue-800 z-50">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-18 items-center justify-between">
           {/* 모바일 메뉴 버튼 */}

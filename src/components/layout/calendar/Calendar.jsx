@@ -224,19 +224,19 @@ function Calendar() {
             <button
               onClick={() => handleNav("prev")}
               disabled={isPrevDisabled}
-              className="btn-prev p-3 rounded-full text-yellow-300 bg-yellow-700 hover:bg-yellow-800 disabled:opacity-50"
+              className="btn-prev p-3 rounded-full text-white bg-blue-700 hover:bg-blue-800 disabled:opacity-50"
             >
               <BsCaretLeftFill className="text-xl" />
             </button>
             <button
               onClick={() => handleNav("today")}
-              className="btn-today px-6 py-2 text-base font-medium text-yellow-300 bg-yellow-700 hover:bg-yellow-800 rounded-lg"
+              className="btn-today px-6 py-2 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 rounded-lg"
             >
               Today
             </button>
             <button
               onClick={() => handleNav("next")}
-              className="btn-next p-3 rounded-full text-yellow-300 bg-yellow-700 hover:bg-yellow-800"
+              className="btn-next p-3 rounded-full text-white bg-blue-700 hover:bg-blue-800"
             >
               <BsCaretRightFill className="text-xl" />
             </button>
@@ -263,13 +263,13 @@ function Calendar() {
             ) || {};
           const badgeText = badgeInfo.dateName || getSeasonType(dateStr);
           const badgeColor = badgeInfo.dateName
-            ? "bg-red-500"
+            ? "bg-purple-600 text-white" // 공휴일
             : badgeText === "성수기"
-            ? "bg-orange-500"
+            ? "bg-red-500 text-white"
             : badgeText === "준성수기"
-            ? "bg-yellow-400 text-black"
+            ? "bg-yellow-500 text-black"
             : badgeText === "비수기"
-            ? "bg-blue-400"
+            ? "bg-gray-400 text-white"
             : "";
 
           return (

@@ -31,7 +31,7 @@ const ClipBoard = ({ value }) => {
         onClick={handleCopy}
         title="클립보드에 복사"
       >
-        <TiClipboard className="me-2 h-4 w-4 text-yellow-600" />
+        <TiClipboard className="me-2 h-6 w-6 text-blue-600" />
       </div>
     </div>
   );

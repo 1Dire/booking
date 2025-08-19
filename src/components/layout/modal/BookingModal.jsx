@@ -418,7 +418,7 @@ const BookingModal = ({ onClose, data }) => {
                 </div>
               )}
 
-              <div className="flex justify-between items-center text-xl font-semibold text-yellow-700">
+              <div className="flex justify-between items-center text-xl font-semibold text-blue-700">
                 <span>총 가격</span>
                 <span>{calculateTotalPrice().toLocaleString()}원</span>
               </div>
@@ -434,7 +434,7 @@ const BookingModal = ({ onClose, data }) => {
           닫기
         </Button>
         <Button
-          className="px-4 py-2 bg-yellow-700 text-yellow-300 rounded hover:bg-yellow-800"
+          className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800"
           onClick={handleSubmit}
         >
           확인

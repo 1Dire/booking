@@ -1,41 +1,59 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { HiOutlineCash } from "react-icons/hi";
+
 const PriceTable = ({ data }) => {
+  const priceList = [
+    {
+      label: "비성수기",
+      value: data?.priceOffPeak,
+      color: "text-sky-700",
+      bg: "bg-sky-50",
+    },
+    {
+      label: "주말",
+      value: data?.priceWeekend,
+      color: "text-blue-700",
+      bg: "bg-blue-50",
+    },
+    {
+      label: "성수기",
+      value: data?.pricePeak,
+      color: "text-indigo-700",
+      bg: "bg-indigo-50",
+    },
+    {
+      label: "준성수기",
+      value: data?.priceShoulder,
+      color: "text-purple-700",
+      bg: "bg-purple-50",
+    },
+  ];
+
   return (
-    <>
-      <span className="flex items-center gap-1 text-yellow-600">
-        <HiOutlineCash className="w-6 h-6" />
-        <span className="text-sm/6 font-medium">가격</span>
-      </span>
-      <div className="grid grid-cols-4 text-sm text-gray-700 font-semibold mt-2">
-        <span className="bg-yellow-900 text-yellow-300  text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm  text-center">
-          비성수기
-        </span>
-        <span className="bg-yellow-900 text-yellow-300  text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm text-center">
-          주말
-        </span>
-        <span className="bg-yellow-900 text-yellow-300  text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm text-center">
-          성수기
-        </span>
-        <span className="bg-yellow-900 text-yellow-300  text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm text-center">
-          준성수기
-        </span>
+    <div className="mt-3">
+      <div className="flex items-center gap-1 text-blue-600 mb-2">
+        <HiOutlineCash className="w-5 h-5" />
+        <span className="text-sm font-medium">가격 정보</span>
       </div>
-      <div className="grid grid-cols-4 text-sm text-gray-900 mt-1">
-        <div className="text-center">
-          {data?.priceOffPeak?.toLocaleString() ?? "-"} 원
-        </div>
-        <div className="text-center">
-          {data?.priceWeekend?.toLocaleString() ?? "-"} 원
-        </div>
-        <div className="text-center">
-          {data?.pricePeak?.toLocaleString() ?? "-"} 원
-        </div>
-        <div className="text-center">
-          {data?.priceShoulder?.toLocaleString() ?? "-"} 원
-        </div>
+
+      <div className="divide-y divide-gray-200 border border-gray-400 rounded-md overflow-hidden text-sm">
+        {priceList.map((item) => (
+          <div
+            key={item.label}
+            className="flex items-center justify-between px-4 py-2"
+          >
+            <span
+              className={`px-2 py-0.5 rounded-md text-xs font-medium ${item.bg} ${item.color}`}
+            >
+              {item.label}
+            </span>
+            <span className="font-semibold text-gray-800">
+              {item.value ? `${item.value.toLocaleString()} 원` : "-"}
+            </span>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,97 +1,79 @@
-import React from "react";
+import { HiOutlineInformationCircle, HiOutlinePhone } from "react-icons/hi";
+import { LuCalendarClock } from "react-icons/lu";
 import ClipBoard from "@/components/util/ClipBoard";
-import { HiOutlineCash } from "react-icons/hi";
-import { HiCalendarDays } from "react-icons/hi2";
 
-const RoomNotice = () => {
+const RoomNoticeCard = () => {
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 py-6 text-sm text-gray-800 gap-4">
-        {/* 요금 안내 */}
-        <div className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg shadow-sm">
-          <HiOutlineCash className="w-7 h-7 text-yellow-600" />
-          <div className="w-full">
-            <h5 className="mb-2 text-2xl font-semibold text-gray-900">
-              요금안내
-            </h5>
-            <ul className="list-disc pl-5 text-gray-600 space-y-1 ">
-              <li>
-                <span>
-                  기준인원 초과 시 1인당
-                  <span className="font-medium text-yellow-700">20,000원</span>
-                  추가요금 발생합니다.
-                </span>
-              </li>
-              <li>
-                <span>
-                  바베큐 이용 시 (숯, 그릴 제공)
-                  <span className="font-medium text-yellow-700">20,000원</span>
-                  입니다.
-                </span>
-              </li>
-            </ul>
-            <div className="grid grid-cols-2 gap-2 pt-5">
-              <div className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-1 rounded text-center">
-                결제안내
-              </div>
-              <div className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-1 rounded text-center">
-                문의전화
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="text-xs font-medium px-2.5 py-1 rounded text-center flex items-center justify-center gap-1">
-                <span>농협 352-0412-0485-43 백연희</span>
+ <div className="mt-8 p-6 rounded-xl border border-gray-200 bg-white shadow-sm mb-5 text-[15px]">
+  {/* 헤더 */}
+  <div className="flex items-center gap-2 mb-4">
+    <HiOutlineInformationCircle className="text-blue-600 w-6 h-6" />
+    <h3 className="text-2xl font-bold text-gray-800">요금 및 시즌 안내</h3>
+  </div>
 
-                <ClipBoard value="352-0412-0485-43" />
-              </div>
-              <div className="text-xs font-medium px-2.5 py-1 rounded text-center space-y-1">
-                <div className="flex items-center justify-center gap-1">
-                  <a href="tel:01045026342" className="hover:underline">
-                    010-4502-6342
-                  </a>
-                  <ClipBoard value="010-4502-6342" />
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <a href="tel:01038776342" className="hover:underline">
-                    010-3877-6342
-                  </a>
-                  <ClipBoard value="010-3877-6342" />
-                </div>
-              </div>
-            </div>
-          </div>
+  {/* 요금 설명 */}
+  <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-6 leading-relaxed">
+    <li>
+      기준인원 초과 시 1인당{" "}
+      <span className="font-bold text-blue-700">20,000원</span> 추가요금 발생
+    </li>
+    <li>
+      바베큐 이용 시 (숯, 그릴 제공){" "}
+      <span className="font-bold text-blue-700">20,000원</span>
+    </li>
+  </ul>
+
+  {/* 시즌 기간 */}
+  <div className="mt-6">
+    <div className="flex items-center gap-2 mb-2">
+      <LuCalendarClock className="text-blue-600 w-5 h-5" />
+      <h4 className="font-semibold text-gray-800 text-base">시즌 기간</h4>
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <div className="bg-blue-50 text-blue-900 px-4 py-2 rounded-md font-semibold flex items-center justify-between">
+        준성수기
+        <span className="text-gray-600 font-normal text-sm">
+          7월 14일 ~ 7월 24일
+        </span>
+      </div>
+      <div className="bg-blue-50 text-blue-900 px-4 py-2 rounded-md font-semibold flex items-center justify-between">
+        성수기
+        <span className="text-gray-600 font-normal text-sm">
+          7월 25일 ~ 8월 15일
+        </span>
+      </div>
+    </div>
+  </div>
+
+  {/* 연락처 */}
+  <div className="mt-6">
+    <div className="flex items-center gap-2 mb-2">
+      <HiOutlinePhone className="text-blue-600 w-5 h-5" />
+      <h4 className="font-semibold text-gray-800 text-base">결제 및 문의</h4>
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <div className="flex items-center justify-between bg-blue-50 text-blue-900 px-4 py-3 rounded-md">
+        <span>
+          농협 352-0412-0485-43
+          <br />
+          <span className="text-gray-600 text-sm">예금주: 백연희</span>
+        </span>
+        <ClipBoard value="352-0412-0485-43" />
+      </div>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between bg-blue-50 text-blue-900 px-4 py-3 rounded-md">
+          <span>010-4502-6342</span>
+          <ClipBoard value="010-4502-6342" />
         </div>
-
-        {/* 시즌 안내 */}
-        <div className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg shadow-sm">
-          <HiCalendarDays className="w-7 h-7 text-yellow-600" />
-
-          <div className="w-full">
-            <h5 className="mb-2 text-2xl font-semibold text-gray-900">
-              시즌 기간 안내
-            </h5>
-
-            <div className="grid grid-cols-2 gap-2">
-              <div className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-1 rounded text-center">
-                준성수기
-              </div>
-              <div className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-1 rounded text-center">
-                성수기
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="text-xs font-medium px-2.5 py-1 rounded text-center">
-                7월14일 ~ 7월 24일
-              </div>
-              <div className="text-xs font-medium px-2.5 py-1 rounded text-center">
-                7월25일 ~ 8월 15일
-              </div>
-            </div>
-          </div>
+        <div className="flex items-center justify-between bg-blue-50 text-blue-900 px-4 py-3 rounded-md">
+          <span>010-3877-6342</span>
+          <ClipBoard value="010-3877-6342" />
         </div>
       </div>
     </div>
+  </div>
+</div>
   );
 };
 
-export default RoomNotice;
+export default RoomNoticeCard;

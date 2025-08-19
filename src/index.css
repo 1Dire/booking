@@ -8,8 +8,7 @@ body {
     "Malgun Gothic", sans-serif;
 }
 #home {
-  background-image: url("/cafe.jpg");
-
+  background-image: url("/main.jpg");
   z-index: -2;
 }
 

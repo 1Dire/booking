@@ -1,24 +1,28 @@
-.fc-col-header-cell-cushion {
-  text-decoration: none !important;
-}
+/* 날짜 숫자 밑줄 제거 */
+.fc-col-header-cell-cushion,
 .fc-day a {
   text-decoration: none !important;
 }
+
+/* 평일 날짜 텍스트 색상 */
 .fc-scrollgrid-sync-inner a {
   color: black;
 }
 
+/* 일요일 텍스트 색상 */
 .fc-day-sun .fc-scrollgrid-sync-inner a {
   color: #f05152 !important;
 }
+
+/* 토요일 텍스트 색상 */
 .fc-day-sat .fc-scrollgrid-sync-inner a {
   color: #4169E1;
 }
 
+/* 이벤트 타이틀 관련 */
 .fc-event-title-container {
   background-color: none !important;
 }
-
 .fc-event {
   background-color: transparent;
   color: black;
@@ -27,44 +31,58 @@
 .fc-event .fc-event-title {
   color: initial;
 }
+
+/* 예약된 방 스타일 */
 .fc-event.reserved-room {
-  background-color: #8e4a10;
+  background-color: #6b7280
+;
+}
+/* 예약되지 않은 방 호버 시 배경 색상 */
+.fc-event:not(.reserved-room):hover {
+  background-color: #e0f2fe !important; /* 밝은 하늘색 */
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 4px;
 }
 .fc-event.reserved-room .fc-event-title {
   color: #fff;
 }
 
+/* 날짜 번호 줄정렬 */
 .fc-daygrid-day-number {
   width: 100%;
 }
 
-
+/* 공휴일 배경 (진한 연핑크) */
 .public-holiday-bg .fc-daygrid-day-top {
-  background-color: #ffcccb !important; /* 붉은 색 */
+  background-color: #ffc1c1 !important;
 }
 
-/* 성수기 배경 색 (코랄 색) */
+/* 성수기 배경 (라이트살몬) */
 .peak-season-bg .fc-daygrid-day-top {
-  background-color: #ffb6c1 !important; /* 코랄 색 */
+  background-color: #ffa07a !important;
 }
 
-/* 준성수기 배경 색 (금색) */
+/* 준성수기 배경 (밝은 레몬 옐로우) */
 .semi-peak-bg .fc-daygrid-day-top {
-  background-color: #fffacd !important; /* 금색 */
+  background-color: #ffeb80 !important;
 }
 
-/* 비수기 배경 색 (파스텔 블루) */
+/* 비수기 배경 (스카이 블루) */
 .off-season-bg .fc-daygrid-day-top {
-  background-color: #b0e0e6 !important; /* 하늘색 */
+  background-color: #a0d8ef !important;
 }
 
+/* 지난 날짜 비표시 (비활성화용) */
 .hidden-date.fc-daygrid-day.fc-day-past:not(.fc-day-today) .fc-daygrid-day-events {
   /* display: none; */
-} 
+}
+
+/* 날짜 셀 높이 확보 */
 .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
   min-height: 125px;
 }
 
-.next-month .fc-daygrid-day-events{
-display: none;
+/* 다음달 날짜 안 보이게 */
+.next-month .fc-daygrid-day-events {
+  display: none;
 }

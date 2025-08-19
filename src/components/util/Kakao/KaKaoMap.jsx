@@ -22,7 +22,7 @@ const KaKaoMap = () => {
       >
         <MapMarker position={position} />
         <CustomOverlayMap position={position} yAnchor={1.5}>
-          <div className="text-yellow-700 border border-yellow-700 bg-white rounded-lg px-3 py-2 font-bold shadow-md transform -translate-y-6">
+          <div className="text-blue-700 border border-blue-700 bg-white rounded-lg px-3 py-2 font-bold shadow-md transform -translate-y-6">
             한산펜션
           </div>
         </CustomOverlayMap>

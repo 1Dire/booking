@@ -12,21 +12,21 @@ const Home = () => {
             고요한 자연 속에서의 완벽한 쉼터 <br />
             한산펜션
           </h1>
-          <p className="mb-8 text-lg font-normal text-yellow-600 lg:text-xl sm:px-16 lg:px-48">
+          <p className="mb-8 text-lg font-normal text-sky-300 lg:text-xl sm:px-16 lg:px-48">
             한산도의 고요한 자연 속, 편안한 휴식을 위한 펜션 에 오신 걸
             환영합니다.
           </p>
           <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
             <Link
               to="/book"  
-              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-yellow-800 hover:bg-yellow-700 focus:ring-4 focus:ring-yellow-800"
+              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:ring-yellow-800"
             >
               예약안내
               <FaArrowRight className="w-3.5 h-3.5 ms-2 rtl:rotate-180" />
             </Link>
             <a
               href="#"
-              className="inline-flex justify-center hover:text-yellow-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
+              className="inline-flex justify-center hover:text-blue-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
             >
               오시는길
             </a>

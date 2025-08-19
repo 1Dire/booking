@@ -181,7 +181,7 @@ const BookingModal = ({ onClose, id }) => {
                 </div>
               </div>
               <div className="space-y-4 border-t py-3">
-                <div className="flex justify-between items-center text-xl font-semibold text-yellow-700">
+                <div className="flex justify-between items-center text-xl font-semibold text-blue-700">
                   <span>총 가격</span>
                   <span>
                     {bookInfo.totalPrice
