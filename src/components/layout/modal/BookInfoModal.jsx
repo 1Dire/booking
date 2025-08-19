@@ -228,7 +228,7 @@ const BookingModal = ({ onClose, id }) => {
                   </Button>
 
                   <Button
-                    className="px-4 py-2 bg-yellow-700 text-yellow-300 rounded hover:bg-yellow-800"
+                    className="px-4 py-2 bg-blue-700 text-blue-300 rounded hover:bg-blue-800"
                     onClick={() => {
                       handleUpdateBook();
                     }}

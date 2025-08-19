@@ -19,7 +19,7 @@ const Home = () => {
           <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
             <Link
               to="/book"  
-              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:ring-yellow-800"
+              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:ring-blue-800"
             >
               예약안내
               <FaArrowRight className="w-3.5 h-3.5 ms-2 rtl:rotate-180" />
